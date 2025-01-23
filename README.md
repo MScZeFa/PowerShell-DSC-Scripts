@@ -163,7 +163,7 @@ The scripts in this folder are designed to be run on the orchestration/deploymen
 ### [forMigrations folder](./5_troubleshooting/forMigrations/)
 <mark>The scripts in this folder may be helpful for migrations and should be used as-desired and as-applicable.</mark>
 
-- [**checkForServiceMigrationIssues.ps1**](./5_troubleshooing/forMigrations/checkForServiceMigrationIssues.ps1)
+- [**checkForServiceMigrationIssues.ps1**](./5_troubleshooting/forMigrations/checkForServiceMigrationIssues.ps1)
     - This script is intended to be used for migrations that make use of PowerShell DSC.  After content is migrated between a source and target system, you can run this script targeting the ArcGIS Server logs to search for the string of text "Failed to create the service" to see if any services failed to migrate over.  If entries are found in the logs with a time stamp that is coincident with that of the migration attempt, you should investigate the /arcgisserver/config-store/services folder to see if the service is present.  If not, manually copy it from the source environment to the target environment.
 
 
