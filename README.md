@@ -160,6 +160,12 @@ The scripts in this folder are designed to be run on the orchestration/deploymen
 - [**taskKillWindowsInstaller.ps1**](./5_troubleshooting/taskKillWindowsInstaller.ps1)
     - This script remotely checks to see if the Windows Installer process is running, and if it is, it kills it.  Sometimes when a PowerShell deployment fails, it might fail during the installation of one of the ArcGIS components, leaving the installer process in a hung state.  If the Windows Installer process is not killed in these cases, any subsequent attempts to invoke the PowerShell command to install will also fail because the machine will assume another installation is still in progress.  So this script helps by checking to see if there is a hung installer process (ideally ran after a failure), and then removes the hung installer process if it exists to prepare the environment for the next invoke attempt.
 
+### [forMigrations folder](./5_troubleshooting/forMigrations/)
+<mark>The scripts in this folder may be helpful for migrations and should be used as-desired and as-applicable.</mark>
+
+- [**checkForServiceMigrationIssues.ps1**](./5_troubleshooing/forMigrations/checkForServiceMigrationIssues.ps1)
+    - This script is intended to be used for migrations that make use of PowerShell DSC.  After content is migrated between a source and target system, you can run this script targeting the ArcGIS Server logs to search for the string of text "Failed to create the service" to see if any services failed to migrate over.  If entries are found in the logs with a time stamp that is coincident with that of the migration attempt, you should investigate the /arcgisserver/config-store/services folder to see if the service is present.  If not, manually copy it from the source environment to the target environment.
+
 
 ## **How To Run These Scripts**
 These scripts can be run by opening a Windows PowerShell ISE session as an Administrator, and then choosing the "Open Script" button (second from the left) from the toolbar.  The "Run" button runs the script and is located towards the middle of the same toolbar.  As a general note, you must "Save" a script before running it after making any changes, and you will be prompted to save if you do not do so before clicking "Run".
