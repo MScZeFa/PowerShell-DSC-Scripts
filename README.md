@@ -17,6 +17,10 @@ A series of helper scripts have been developed to assist with both setting up an
 ## [2_settingUpArcgisModule folder](./2_settingUpArcgisModule/)
 <mark>The scripts in this folder should be run situationally, with the help of the descriptions provided below.  You may need to use just one or a combination of them in your deployment</mark>
 
+-  [**getModuleVersion.ps1**](./2_settingUpArcgisModule/getModuleVersion.ps1)
+    - This script will report on which version of the ArcGIS PowerShell DSC module is installed on each of the servers in the list you provide the script.  This information can be helpful when determining whether or not the ArcGIS module version needs upgraded, and also indicates when there is more than one version of the module installed (this can sometimes cause issues and is generally not recommended).
+
+
 -  [**installModule.ps1**](./2_settingUpArcgisModule/installModule.ps1)
     - This script will download the ArcGIS PowerShell module onto a single machine, such as an orchestration or deployment server.  Once the ArcGIS module is installed on the single machine using this script, the transferModule.ps1 script can be used to transfer the ArcGIS module to other machines in the deployment.  
     
