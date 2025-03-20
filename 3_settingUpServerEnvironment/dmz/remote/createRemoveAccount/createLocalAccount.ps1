@@ -13,7 +13,7 @@ $scriptBlock = {
     try {
         # Create local user
         if (-not (Get-LocalUser -Name $username -ErrorAction SilentlyContinue)) {
-            New-LocalUser -Name $username -Password $securePassword -Description $description
+            New-LocalUser -Name $username -Password $password -Description $description
             Write-Host "Local user $username created successfully."
         } else {
             Write-Host "Local user $username already exists."
@@ -33,5 +33,5 @@ $scriptBlock = {
 
 # Execute the script block on each target machine
 foreach ($computer in $computers) {
-    Invoke-Command -ComputerName $computer -ScriptBlock $scriptBlock -ArgumentList $username, $securePassword, $description
+    Invoke-Command -ComputerName $computer -ScriptBlock $scriptBlock -ArgumentList $username, $password, $description
 }
