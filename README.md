@@ -63,18 +63,18 @@ A series of helper scripts have been developed to assist with both setting up an
     - This script sets up firewall rules on a list of specified machines to allow inbound traffic on designated ports. It is designed to facilitate the configuration of firewall settings for ArcGIS Enterprise by opening necessary ports for various services. Note that some environments may have this setting managed by GPO and/or may have external Firewalls.  If this is the case, this script may not address all scenarios. Please discuss with IT on how the Firewall environment is being managed.
 
 ### [dmz folder](./3_settingUpServerEnvironment/dmz)
-<mark>These scripts can be used when there are components to install and configure with PowerShellDSC that reside inside of a DMZ.</mark>
+<mark>These scripts can be used when there are components to install and configure with PowerShellDSC that reside inside of a DMZ. The 'local' folder represents scripts that should be run in the DMZ environment, while the 'remote' folder represents scripts that should be run on/against the servers in the internal network.</mark>
 
 #### [local folder](./3_settingUpServerEnvironment/dmz/local)
-The scripts in this folder are designed to be run for the 'local' or orchestration/deployment server.
+The scripts in this folder are designed to be run on the DMZ server(s).
 
 ##### [createRemoveAccount folder](./3_settingUpServerEnvironment/dmz/local/createRemoveAccount/)
 
 - [**createLocalAccount.ps1**](./3_settingUpServerEnvironment/dmz/local/createRemoveAccount/createLocalAccount.ps1)
-    - This script will create a local user account on the local server.
+    - This script will create a local user account on the DMZ server(s).
 
 - [**removeLocalAccount.ps1**](./3_settingUpServerEnvironment/dmz/local/createRemoveAccount/removeLocalAccount.ps1)
-    - This script will remove a local user account from the Administrators group and then delete the account on the local server.
+    - This script will remove a local user account from the Administrators group and then delete the account on the DMZ server(s).
 
 ##### [createRemoveLocalAccountTokenFilterPolicy folder](./3_settingUpServerEnvironment/dmz/local/createRemoveLocalAccountTokenFilterPolicy/)
 
@@ -87,21 +87,21 @@ The scripts in this folder are designed to be run for the 'local' or orchestrati
 ##### [createRemoveTrustedHosts folder](./3_settingUpServerEnvironment/dmz/local/createRemoveTrustedHosts/)
 
 - [**addTrustedHosts.ps1**](./3_settingUpServerEnvironment/dmz/local/createRemoveLocalAccountTokenFilterPolicy/addTrustedHosts.ps1)
-    - This script will create a comma-separated string of IP addresses and hostnames and sets the TrustedHosts configuration setting for WinRM on a local server.
+    - This script will create a comma-separated string of IP addresses and hostnames of internal server machines and sets the TrustedHosts configuration setting for WinRM on the DMZ server(s).
 
 - [**removeTrustedHosts.ps1**](./3_settingUpServerEnvironment/dmz/local/createRemoveLocalAccountTokenFilterPolicy/removeTrustedHosts.ps1)
-    - This script will reset the TrustedHosts list on the local server back to its default value, which is an empty list.
+    - This script will reset the TrustedHosts list on the DMZ server(s) back to its default value, which is an empty list.
 
 #### [remote folder](./3_settingUpServerEnvironment/dmz/remote/)
-The scripts in this folder are designed to be run on the orchestration/deployment server and targeting remote server(s) in the deployment.
+The scripts in this folder are designed to be run on the internal orchestration/deployment server and target the other internal server(s) in the deployment.
 
 ##### [createRemoveAccount folder](./3_settingUpServerEnvironment/dmz/remote/createRemoveAccount/)
 
 - [**createLocalAccount.ps1**](./3_settingUpServerEnvironment/dmz/remote/createRemoveAccount/createLocalAccount.ps1)
-    - This script will create a local user account on the remote server(s) passed as a list in the script.
+    - This script will create a local user account on the internal server(s) passed as a list in the script.
 
 - [**removeLocalAccount.ps1**](./3_settingUpServerEnvironment/dmz/remote/createRemoveAccount/removeLocalAccount.ps1)
-    - This script will remove a local user account from the Administrators group and then delete the account on the remote server(s) passed as a list in the script.
+    - This script will remove a local user account from the Administrators group and then delete the account on the internal server(s) passed as a list in the script.
 
 ##### [createRemoveLocalAccountTokenFilterPolicy folder](./3_settingUpServerEnvironment/dmz/remote/createRemoveLocalAccountTokenFilterPolicy/)
 
@@ -114,10 +114,10 @@ The scripts in this folder are designed to be run on the orchestration/deploymen
 ##### [createRemoveTrustedHosts folder](./3_settingUpServerEnvironment/dmz/remote/createRemoveTrustedHosts/)
 
 - [**addTrustedHosts.ps1**](./3_settingUpServerEnvironment/dmz/remote/createRemoveLocalAccountTokenFilterPolicy/addTrustedHosts.ps1)
-    - This script will create a comma-separated string of IP addresses and hostnames and sets the TrustedHosts configuration setting for WinRM on a remote server(s) passed as a list in the script.
+    - This script will create a comma-separated string of IP addresses and hostnames for DMZ server(s) and sets the TrustedHosts configuration setting for WinRM on the internal server(s) passed as a list in the script.
 
 - [**removeTrustedHosts.ps1**](./3_settingUpServerEnvironment/dmz/remote/createRemoveLocalAccountTokenFilterPolicy/removeTrustedHosts.ps1)
-    - This script will reset the TrustedHosts list, for each remote server passed in the script, back to its default value, which is an empty list.
+    - This script will reset the TrustedHosts list, for each internal server passed in the script, back to its default value, which is an empty list.
 
 ### [forDisconnectedEnvironments folder](./3_settingUpServerEnvironment/forDisconnectedEnvironments)
 <mark>These scripts can be used when the servers are disconnected from the internet, or if you're not planning on making use of the downloadSetups or download URL path parameters in the ArcGIS Module.</mark>
