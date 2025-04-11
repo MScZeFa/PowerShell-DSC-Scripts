@@ -4,25 +4,29 @@
 
 # change the $localServer and $remoteServers lists to reflect your machines
 
+# change the $sourceDrive, $mainDirectory and $subDirectory to match your environment
+
 # Define the local and remote servers
 $localServer = @('localserver')   # Local server or orchestration server
 $remoteServers = @('remoteserver1','remoteserver2') # List of remote servers
 
-$mainDirectory = "EsriInstall" # Change this to the directory that contains the folder that contains the installs folder
-$subDirectory = "installs" # Change this to the directory that contains the installer files
+$sourceDrive = "C:" # Define the drive letter as a variable (no trailing slash or $)
+$mainDirectory = "Automation" # Change this to the directory that contains the folder that contains the installs folder
+$subDirectory = "installs" # Change this to the directory that contains the installers
 
 $ScriptBlock = {
-    param ($server, $mainDirectory, $subDirectory, $remoteServers)
+    param ($server, $mainDirectory, $subDirectory, $remoteServers, $sourceDrive)
     
-    # Trim any spaces and perform a case-insensitive comparison for remote servers
     $serverTrimmed = $server.Trim()
-    
     Write-Host "Checking if $serverTrimmed is in remote servers list..."
     
     if ($remoteServers -contains $serverTrimmed) {
         try {
-            # Define the target directory path
-            $targetDir = "\\$serverTrimmed\d$\$mainDirectory\$subDirectory"
+            # Clean the colon from the drive letter for UNC use (e.g., "D:" -> "D$")
+            $driveShare = "$($sourceDrive.TrimEnd(':'))$"
+            
+            # Define the target directory path using the dynamic drive variable
+            $targetDir = "\\$serverTrimmed\$driveShare\$mainDirectory\$subDirectory"
             
             # Check if the target directory exists, create it if it doesn't
             if (-not (Test-Path -Path $targetDir)) {
@@ -30,16 +34,15 @@ $ScriptBlock = {
                 New-Item -ItemType Directory -Path $targetDir -Force
             }
             else {
-                # If the directory already exists, remove its contents
                 Write-Host "Removing contents of directory: $targetDir"
                 Remove-Item "$targetDir\*" -Recurse -Force
             }
             
-            # Now, copy only the contents of the source installs folder to the target
-            Write-Host "Copying files to $targetDir"
-            Copy-Item -Path "D:\$mainDirectory\$subDirectory\*" -Destination $targetDir -Recurse -Force
+            # Copy from local source to remote target
+            $sourcePath = Join-Path -Path $sourceDrive -ChildPath "$mainDirectory\$subDirectory\*"
+            Write-Host "Copying files from $sourcePath to $targetDir"
+            Copy-Item -Path $sourcePath -Destination $targetDir -Recurse -Force
             
-            # Output the contents of the target directory after copy
             Write-Host "Files in destination directory $targetDir after copy:"
             Get-ChildItem -Path $targetDir -Recurse | ForEach-Object { Write-Host $_.FullName }
         }
@@ -54,7 +57,7 @@ $ScriptBlock = {
 # Loop through all servers and apply script to remote servers only
 $jobs = @()
 foreach ($server in $localServer + $remoteServers) {
-    $job = Start-Job -ScriptBlock $ScriptBlock -ArgumentList $server, $mainDirectory, $subDirectory, $remoteServers
+    $job = Start-Job -ScriptBlock $ScriptBlock -ArgumentList $server, $mainDirectory, $subDirectory, $remoteServers, $sourceDrive
     $jobs += $job
 }
 
@@ -66,5 +69,4 @@ $jobs | ForEach-Object {
     Receive-Job -Job $_
     Remove-Job -Job $_
 }
-
 
