@@ -39,9 +39,6 @@ try {
 Write-Host "Checking if Nmap is already installed..."
 
 $nmapPath = "C:\Program Files (x86)\Nmap\nmap.exe"
-if (-Not (Test-Path $nmapPath)) {
-    $nmapPath = "C:\Program Files\Nmap\nmap.exe"
-}
 
 if (Test-Path $nmapPath) {
     Write-Host "Nmap is already installed at: $nmapPath"
