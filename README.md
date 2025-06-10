@@ -65,58 +65,58 @@ A series of helper scripts have been developed to assist with both setting up an
 ### [dmz folder](./3_settingUpServerEnvironment/dmz)
 <mark>These scripts can be used when there are components to install and configure with PowerShellDSC that reside inside of a DMZ. The 'local' folder represents scripts that should be run in the DMZ environment, while the 'remote' folder represents scripts that should be run on/against the servers in the internal network.</mark>
 
-#### [local folder](./3_settingUpServerEnvironment/dmz/local)
+#### [dmzServer folder](./3_settingUpServerEnvironment/dmz/dmzServer)
 The scripts in this folder are designed to be run on the DMZ server(s).
 
-##### [createRemoveAccount folder](./3_settingUpServerEnvironment/dmz/local/createRemoveAccount/)
+##### [createRemoveAccount folder](./3_settingUpServerEnvironment/dmz/dmzServer/createRemoveAccount/)
 
-- [**createLocalAccount.ps1**](./3_settingUpServerEnvironment/dmz/local/createRemoveAccount/createLocalAccount.ps1)
+- [**createLocalAccount.ps1**](./3_settingUpServerEnvironment/dmz/dmzServer/createRemoveAccount/createLocalAccount.ps1)
     - This script will create a local user account on the DMZ server(s).
 
-- [**removeLocalAccount.ps1**](./3_settingUpServerEnvironment/dmz/local/createRemoveAccount/removeLocalAccount.ps1)
+- [**removeLocalAccount.ps1**](./3_settingUpServerEnvironment/dmz/dmzServer/createRemoveAccount/removeLocalAccount.ps1)
     - This script will remove a local user account from the Administrators group and then delete the account on the DMZ server(s).
 
-##### [createRemoveLocalAccountTokenFilterPolicy folder](./3_settingUpServerEnvironment/dmz/local/createRemoveLocalAccountTokenFilterPolicy/)
+##### [createRemoveLocalAccountTokenFilterPolicy folder](./3_settingUpServerEnvironment/dmz/dmzServer/createRemoveLocalAccountTokenFilterPolicy/)
 
-- [**setLocalAccountTokenFilterPolicy.ps1**](./3_settingUpServerEnvironment/dmz/local/createRemoveLocalAccountTokenFilterPolicy/setLocalAccountTokenFilterPolicy.ps1)
+- [**setLocalAccountTokenFilterPolicy.ps1**](./3_settingUpServerEnvironment/dmz/dmzServer/createRemoveLocalAccountTokenFilterPolicy/setLocalAccountTokenFilterPolicy.ps1)
     - This script will create a LocalAccountTokenFilterPolicy and set the value to 1.  What this does is grant remote connections from all local members of the Administrators group full high-integrity tokens during negotiation.  This should only be used on a temporary basis while deploying using PowerShellDSC.  After the deployment is complete, the corresponding removeLocalAccountTokenFilterPolicy.ps1 script should be used to remove the policy.
 
-- [**removeLocalAccountTokenFilterPolicy.ps1**](./3_settingUpServerEnvironment/dmz/local/createRemoveLocalAccountTokenFilterPolicy/removeLocalAccountTokenFilterPolicy.ps1)
+- [**removeLocalAccountTokenFilterPolicy.ps1**](./3_settingUpServerEnvironment/dmz/dmzServer/createRemoveLocalAccountTokenFilterPolicy/removeLocalAccountTokenFilterPolicy.ps1)
     - This script will remove a LocalAccountTokenFilterPolicy.  What this policy does is grant remote connections from all local members of the Administrators group full high-integrity tokens during negotiation.  After the PowerShellDSC deployment is complete, this policy should be removed as an additional security measure.
 
-##### [createRemoveTrustedHosts folder](./3_settingUpServerEnvironment/dmz/local/createRemoveTrustedHosts/)
+##### [createRemoveTrustedHosts folder](./3_settingUpServerEnvironment/dmz/dmzServer/createRemoveTrustedHosts/)
 
-- [**addTrustedHosts.ps1**](./3_settingUpServerEnvironment/dmz/local/createRemoveLocalAccountTokenFilterPolicy/addTrustedHosts.ps1)
+- [**addTrustedHosts.ps1**](./3_settingUpServerEnvironment/dmz/dmzServer/createRemoveTrustedHosts/addTrustedHosts.ps1)
     - This script will create a comma-separated string of IP addresses and hostnames of internal server machines and sets the TrustedHosts configuration setting for WinRM on the DMZ server(s).
 
-- [**removeTrustedHosts.ps1**](./3_settingUpServerEnvironment/dmz/local/createRemoveLocalAccountTokenFilterPolicy/removeTrustedHosts.ps1)
+- [**removeTrustedHosts.ps1**](./3_settingUpServerEnvironment/dmz/dmzServer/createRemoveTrustedHosts/removeTrustedHosts.ps1)
     - This script will reset the TrustedHosts list on the DMZ server(s) back to its default value, which is an empty list.
 
-#### [remote folder](./3_settingUpServerEnvironment/dmz/remote/)
+#### [internalServers folder](./3_settingUpServerEnvironment/dmz/internalServers)
 The scripts in this folder are designed to be run on the internal orchestration/deployment server and target the other internal server(s) in the deployment.
 
-##### [createRemoveAccount folder](./3_settingUpServerEnvironment/dmz/remote/createRemoveAccount/)
+##### [createRemoveAccount folder](./3_settingUpServerEnvironment/dmz/internalServers/createRemoveAccount/)
 
-- [**createLocalAccount.ps1**](./3_settingUpServerEnvironment/dmz/remote/createRemoveAccount/createLocalAccount.ps1)
+- [**createLocalAccount.ps1**](./3_settingUpServerEnvironment/dmz/internalServers/createRemoveAccount/createLocalAccount.ps1)
     - This script will create a local user account on the internal server(s) passed as a list in the script.
 
-- [**removeLocalAccount.ps1**](./3_settingUpServerEnvironment/dmz/remote/createRemoveAccount/removeLocalAccount.ps1)
+- [**removeLocalAccount.ps1**](./3_settingUpServerEnvironment/dmz/internalServers/createRemoveAccount/removeLocalAccount.ps1)
     - This script will remove a local user account from the Administrators group and then delete the account on the internal server(s) passed as a list in the script.
 
-##### [createRemoveLocalAccountTokenFilterPolicy folder](./3_settingUpServerEnvironment/dmz/remote/createRemoveLocalAccountTokenFilterPolicy/)
+##### [createRemoveLocalAccountTokenFilterPolicy folder](./3_settingUpServerEnvironment/dmz/internalServers/createRemoveLocalAccountTokenFilterPolicy/)
 
-- [**setLocalAccountTokenFilterPolicy.ps1**](./3_settingUpServerEnvironment/dmz/remote/createRemoveLocalAccountTokenFilterPolicy/setLocalAccountTokenFilterPolicy.ps1)
+- [**setLocalAccountTokenFilterPolicy.ps1**](./3_settingUpServerEnvironment/dmz/internalServers/createRemoveLocalAccountTokenFilterPolicy/setLocalAccountTokenFilterPolicy.ps1)
     - This script will create a LocalAccountTokenFilterPolicy and set the value to 1.  What this does is grant remote connections from all local members of the Administrators group full high-integrity tokens during negotiation.  This should only be used on a temporary basis while deploying using PowerShellDSC.  After the deployment is complete, the corresponding removeLocalAccountTokenFilterPolicy.ps1 script should be used to remove the policy.
 
-- [**removeLocalAccountTokenFilterPolicy.ps1**](./3_settingUpServerEnvironment/dmz/remote/createRemoveLocalAccountTokenFilterPolicy/removeLocalAccountTokenFilterPolicy.ps1)
+- [**removeLocalAccountTokenFilterPolicy.ps1**](./3_settingUpServerEnvironment/dmz/internalServers/createRemoveLocalAccountTokenFilterPolicy/removeLocalAccountTokenFilterPolicy.ps1)
     - This script will remove a LocalAccountTokenFilterPolicy.  What this policy does is grant remote connections from all local members of the Administrators group full high-integrity tokens during negotiation.  After the PowerShellDSC deployment is complete, this policy should be removed as an additional security measure.
 
-##### [createRemoveTrustedHosts folder](./3_settingUpServerEnvironment/dmz/remote/createRemoveTrustedHosts/)
+##### [createRemoveTrustedHosts folder](./3_settingUpServerEnvironment/dmz/internalServers/createRemoveTrustedHosts/)
 
-- [**addTrustedHosts.ps1**](./3_settingUpServerEnvironment/dmz/remote/createRemoveLocalAccountTokenFilterPolicy/addTrustedHosts.ps1)
+- [**addTrustedHosts.ps1**](./3_settingUpServerEnvironment/dmz/internalServers/createRemoveTrustedHosts/addTrustedHosts.ps1)
     - This script will create a comma-separated string of IP addresses and hostnames for DMZ server(s) and sets the TrustedHosts configuration setting for WinRM on the internal server(s) passed as a list in the script.
 
-- [**removeTrustedHosts.ps1**](./3_settingUpServerEnvironment/dmz/remote/createRemoveLocalAccountTokenFilterPolicy/removeTrustedHosts.ps1)
+- [**removeTrustedHosts.ps1**](./3_settingUpServerEnvironment/dmz/internalServers/createRemoveTrustedHosts/removeTrustedHosts.ps1)
     - This script will reset the TrustedHosts list, for each internal server passed in the script, back to its default value, which is an empty list.
 
 ### [forDisconnectedEnvironments folder](./3_settingUpServerEnvironment/forDisconnectedEnvironments)
@@ -151,6 +151,9 @@ The scripts in this folder are designed to be run on the internal orchestration/
 
 ## [5_troubleshooting folder](./5_troubleshooting/)
 <mark>The scripts in this folder can be used for troubleshooting issues with your PowerShell deployment and should be used as-needed.</mark>
+
+- [**checkPortAvailablity.ps1**](./5_troubleshooting/checkPortAvailability.ps1)
+    - This script does a few key things to assess network readiness for an ArcGIS Enterprise deployment.  First, it resolves a fully-qualified domain name into an IP address, which tests for DNS resolvability.  Then, it checks to see if the nmap tool is installed, and if not, the script will download and install it.  Finally, the script performs a port scan of the port you specify against the IP address which was resolved from the fully-qualified domain name you specified and reports on the state of the port reachability, without the need to have the ArcGIS Enterprise software installed and listening on the port.  This can be a helpful script to use before you begin a deployment to ensure that no firewalls or filters are blocking port traffic intended for the ArcGIS Enterprise application servers.
 
 - [**restartServers.ps1**](./5_troubleshooting/restartServers.ps1)
     - This script remotely reboots servers provided in a list.  When troubleshooting an issue with your deployment, or if you encounter a situation where the PowerShell deploment fails and stalls mid-installation, it's sometimes helpful to reboot the server to clear out any pending actions/processes or settings.
