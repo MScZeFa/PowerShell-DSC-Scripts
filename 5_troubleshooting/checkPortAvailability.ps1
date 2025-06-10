@@ -11,12 +11,16 @@
 # ========================
 # Configurable Variables
 # ========================
-$nmapUrl      = "https://nmap.org/dist/nmap-7.94-setup.exe"
 $targetFQDN   = "server.domain.com"       # <-- Replace with your FQDN
 $targetPort   = 12345               # <-- Replace with your port
 
+# ========================
+# nmap download and install variables
+# ========================
+
 $nmapInstaller = "$env:TEMP\nmap-setup.exe"
 $nmapOutputFile = "$env:TEMP\nmap_output.txt"
+$nmapUrl      = "https://nmap.org/dist/nmap-7.94-setup.exe"
 
 # ========================
 # Resolve FQDN to IP
