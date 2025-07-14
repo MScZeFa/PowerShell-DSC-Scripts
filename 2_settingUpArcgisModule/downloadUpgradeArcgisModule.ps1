@@ -4,7 +4,7 @@
 
 # change the machine1, machine2 with your machines
 
-$arcgisservers = ("LV-AS-AEP201")
+$arcgisservers = ("localhost")
 
 # Start a new job for each server
 $jobs = $arcgisservers | ForEach-Object {
