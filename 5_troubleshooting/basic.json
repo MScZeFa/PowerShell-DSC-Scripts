@@ -1,0 +1,145 @@
+{
+    "AllNodes": [
+        {
+            "NodeName": "localhost",
+            "DataStoreTypes": [
+                "Relational"
+            ],
+            "Role": [
+                "Server",
+                "Portal",
+                "DataStore",
+                "WebAdaptor"
+            ],
+            "WebAdaptorConfig": [
+                {
+                    "Role": "Portal"
+                },
+                {
+                    "Role": "Server"
+                }
+            ]
+        }
+    ],
+    "ConfigData": {
+        "Version": "11.5",
+        "ServerContext": "server",
+        "PortalContext": "portal",
+        "ServerRole": "GeneralPurposeServer",
+        "DownloadSetups": false,
+        "DownloadSetupsToSharedPath": false,
+        "DownloadPatches": true,
+        "SkipPatchInstalls": false,
+        "Credentials": {
+            "ServiceAccount": {
+                "UserName": "SMI\\svc_arcgis",
+                "PasswordFile": "C:\\Automation\\passwordFiles\\svc_arcgis.txt",
+                "IsDomainAccount": true,
+                "IsMSAAccount": false
+            }
+        },
+        "Server": {
+            "LicenseFilePath": "C:\\Automation\\Licenses\\server.ecp",
+            "Installer": {
+                "Path": "C:\\Automation\\Installers\\ArcGIS_Server_Windows_115_185182.exe",
+                "VolumePaths": [],
+                "IsSelfExtracting": true,
+                "InstallDir": "C:\\Program Files\\ArcGIS\\Server",
+                "PatchesDir": "C:\\Automation\\Installers\\Patches",
+                "PatchInstallOrder": [],
+                "EnableArcMapRuntime": false,
+                "EnableDotnetSupport": true
+            },
+            "ServerDirectoriesRootLocation": "C:\\arcgisserver\\directories",
+            "ConfigStoreLocation": "C:\\arcgisserver\\config-store",
+            "LocalRepositoryPath": "C:\\arcgisserver\\local",
+            "ServerLogsLocation": "C:\\arcgisserver\\logs",
+            "ServerDirectories": [
+                {
+                    "name": "arcgiscache",
+                    "physicalPath": "C:\\arcgisserver\\directories\\arcgiscache",
+                    "directoryType": "CACHE",
+                    "cleanupMode": "NONE",
+                    "maxFileAge": 0
+                },
+                {
+                    "name": "arcgisjobs",
+                    "physicalPath": "C:\\arcgisserver\\directories\\arcgisjobs",
+                    "directoryType": "JOBS",
+                    "cleanupMode": "TIME_ELAPSED_SINCE_LAST_MODIFIED",
+                    "maxFileAge": 360
+                },
+                {
+                    "name": "arcgisoutput",
+                    "physicalPath": "C:\\arcgisserver\\directories\\arcgisoutput",
+                    "directoryType": "OUTPUT",
+                    "cleanupMode": "TIME_ELAPSED_SINCE_LAST_MODIFIED",
+                    "maxFileAge": 10
+                },
+                {
+                    "name": "arcgissystem",
+                    "physicalPath": "C:\\arcgisserver\\directories\\arcgissystem",
+                    "directoryType": "SYSTEM",
+                    "cleanupMode": "NONE",
+                    "maxFileAge": 0
+                }
+            ],
+            "RegisteredDirectories": [],
+            "PrimarySiteAdmin": {
+                "UserName": "siteadmin",
+                "PasswordFile": "C:\\Automation\\passwordFiles\\serverAdmin.txt"
+            },
+            "EnableHTTPSOnly": true,
+            "EnableHSTS": true
+        },
+        "Portal": {
+            "LicenseFilePath": "C:\\Automation\\Licenses\\portal.json",
+            "PortalLicenseUserTypeId": "creatorUT",
+            "Installer": {
+                "Path": "C:\\Automation\\Installers\\Portal_for_ArcGIS_Windows_115_185210.exe",
+                "VolumePaths": [],
+                "IsSelfExtracting": true,
+                "InstallDir": "C:\\Program Files\\ArcGIS\\Portal",
+                "ContentDir": "C:\\arcgisportal\\content",
+                "PatchesDir": "C:\\Automation\\Installers\\Patches",
+                "PatchInstallOrder": []
+            },
+            "ContentDirectoryLocation": "C:\\arcgisportal\\content",
+            "EnableAutomaticAccountCreation": true,
+            "PortalAdministrator": {
+                "UserName": "siteadmin",
+                "Email": "admin@example.de",
+                "PasswordFile": "C:\\Automation\\passwordFiles\\portalAdmin.txt",
+                "SecurityQuestionIndex": 1,
+                "SecurityAnswer": "vanilla"
+            },
+            "EnableHSTS": true
+        },
+        "DataStore": {
+            "ContentDirectoryLocation": "C:\\arcgisdatastore",
+            "EnableFailoverOnPrimaryStop": false,
+            "EnablePointInTimeRecovery": false,
+            "Installer": {
+                "Path": "C:\\Automation\\Installers\\ArcGIS_DataStore_Windows_115_185193.exe",
+                "IsSelfExtracting": true,
+                "InstallDir": "C:\\Program Files\\ArcGIS\\DataStore",
+                "InstallAllFeatures": false,
+                "PatchesDir": "C:\\Automation\\Installers\\Patches",
+                "PatchInstallOrder": []
+            }
+        },
+        "WebAdaptor": {
+            "AdminAccessEnabled": true,
+            "OverrideHTTPSBinding": true,
+            "Installer": {
+                "Path": "C:\\Automation\\Installers\\ArcGIS_WebAdaptor_IIS_Windows_115_185201.exe",
+                "DotnetHostingBundlePath": "C:\\Automation\\Installers\\dotnet-hosting-8.0.0-win.exe",
+                "WebDeployPath": "C:\\Automation\\Installers\\WebDeploy_amd64_en-US.msi",
+                "IsSelfExtracting": true,
+                "PatchesDir": "C:\\Automation\\Installers\\Patches",
+                "PatchInstallOrder": []
+            },
+            "WebSiteId": 1
+        }
+    }
+}
