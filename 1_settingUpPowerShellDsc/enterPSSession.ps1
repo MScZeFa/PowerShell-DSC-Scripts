@@ -5,7 +5,7 @@
 
 
 # List of servers
-$servers = @("Server1", "Server2", "Server3")
+$servers = @("LV-AS-AEP201")
 
 # Loop through each server
 foreach ($server in $servers) {
