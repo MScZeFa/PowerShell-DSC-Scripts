@@ -4,7 +4,7 @@
 
 #change the machine1, machine2 with your machines
 #if only one machine in deployment then can simply run the contents of the invoke command
-$arcgisservers = @('machine1','machine2')
+$arcgisservers = @("LV-AS-AEP201")
 
 foreach ($server in $arcgisservers) {
     Write-Host "Connecting to $server";
