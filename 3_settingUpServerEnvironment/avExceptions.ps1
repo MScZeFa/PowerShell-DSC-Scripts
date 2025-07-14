@@ -1,5 +1,5 @@
 # List of target machines
-$computers = @("LV-AS-AEP201")
+$computers = @("localhost")
 
 # Define the list of folders to exclude
 $foldersToExclude = @(
