@@ -2,7 +2,7 @@
 ##This script will report on which version of the ArcGIS PowerShell DSC module is installed on each of the servers in the list you provide the script.
 ##This information can be helpful when determining whether or not the ArcGIS module version needs upgraded, and also indicates when there is more than one version of the module installed (this can sometimes cause issues and is not recommended).
 
-$servers = @("LV-AS-AEP201")
+$servers = @("localhost")
 
 foreach ($server in $servers) {
     try {
