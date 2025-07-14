@@ -1,14 +1,13 @@
-# Brendan Bladdick
+# Brendan Bladdick - – angepasst auf GeoBAK / ArcGIS Enterprise 11.5 Umgebung
 
 # Script to create password files for the accounts and certificates
 
 # Define account types and their respective output file paths in an ordered hashtable
-$accounts = [ordered]@{ # Ordered hashtable
-    "AD account 'domain\svcArcGIS'" = "D:\EsriInstall\passwordFiles\ADPassword.txt"
-    "MyEsri account 'temp'" = "D:\EsriInstall\passwordFiles\myesri.txt"
-    "Portal account 'arcgisportal'" = "D:\EsriInstall\passwordFiles\arcgisportal.txt"
-    "Server account 'arcgisadmin'" = "D:\EsriInstall\passwordFiles\arcgisadmin.txt"
-    "Server 'cert' certificate" = "D:\EsriInstall\passwordFiles\cert.txt"
+$accounts = [ordered]@{
+    "AD account 'SMI\svc_arcgis'"       = "C:\Automation\passwordFiles\svc_arcgis.txt"
+    "Portal admin account 'siteadmin'"  = "C:\Automation\passwordFiles\portalAdmin.txt"
+    "Server admin account 'siteadmin'"  = "C:\Automation\passwordFiles\serverAdmin.txt"
+    "SSL certificate (PFX) password"    = "C:\Automation\passwordFiles\certPassword.txt"
 }
 
 # Ensure the directory exists before creating the password files
