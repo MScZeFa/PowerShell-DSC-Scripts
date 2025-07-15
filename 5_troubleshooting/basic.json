@@ -41,7 +41,7 @@
         "Server": {
             "LicenseFilePath": "C:\\Automation\\Licenses\\server.ecp",
             "Installer": {
-                "Path": "C:\\Automation\\Installers\\ArcGIS_Server_Windows_115_185182.exe",
+                "Path": "C:\\Automation\\Installers\\ArcGIS_Server_Windows_115_195344.exe",
                 "VolumePaths": [],
                 "IsSelfExtracting": true,
                 "InstallDir": "C:\\Program Files\\ArcGIS\\Server",
@@ -96,7 +96,7 @@
             "LicenseFilePath": "C:\\Automation\\Licenses\\portal.json",
             "PortalLicenseUserTypeId": "creatorUT",
             "Installer": {
-                "Path": "C:\\Automation\\Installers\\Portal_for_ArcGIS_Windows_115_185210.exe",
+                "Path": "C:\\Automation\\Installers\\Portal_for_ArcGIS_Windows_115_195367.exe",
                 "VolumePaths": [],
                 "IsSelfExtracting": true,
                 "InstallDir": "C:\\Program Files\\ArcGIS\\Portal",
@@ -120,7 +120,7 @@
             "EnableFailoverOnPrimaryStop": false,
             "EnablePointInTimeRecovery": false,
             "Installer": {
-                "Path": "C:\\Automation\\Installers\\ArcGIS_DataStore_Windows_115_185193.exe",
+                "Path": "C:\\Automation\\Installers\\ArcGIS_DataStore_Windows_115_195370.exe",
                 "IsSelfExtracting": true,
                 "InstallDir": "C:\\Program Files\\ArcGIS\\DataStore",
                 "InstallAllFeatures": false,
@@ -132,9 +132,9 @@
             "AdminAccessEnabled": true,
             "OverrideHTTPSBinding": true,
             "Installer": {
-                "Path": "C:\\Automation\\Installers\\ArcGIS_WebAdaptor_IIS_Windows_115_185201.exe",
-                "DotnetHostingBundlePath": "C:\\Automation\\Installers\\dotnet-hosting-8.0.0-win.exe",
-                "WebDeployPath": "C:\\Automation\\Installers\\WebDeploy_amd64_en-US.msi",
+                "Path": "C:\\Automation\\Installers\\ArcGIS_WebAdaptor_IIS_Windows_115_195371.exe",
+                "DotnetHostingBundlePath": "C:\\Automation\\Installers\\dotnet-hosting-8.0.16-win.exe",
+                "WebDeployPath": "C:\\Automation\\Installers\\WebDeploy_amd64_de-DE.msi",
                 "IsSelfExtracting": true,
                 "PatchesDir": "C:\\Automation\\Installers\\Patches",
                 "PatchInstallOrder": []
